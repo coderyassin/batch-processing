@@ -1,0 +1,46 @@
+server:
+  port: 8094
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/batchdb?createDatabaseIfNotExist=true
+    username: root
+    password: YassMel97
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  batch:
+    jdbc:
+      schema: classpath:org/springframework/batch/core/schema-mysql.sql
+      initialize-schema: always
+    job:
+      enabled: false
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: preprod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/batchdb2?createDatabaseIfNotExist=true
+    username: root
+    password: YassMel97
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  batch:
+    jdbc:
+      schema: classpath:org/springframework/batch/core/schema-mysql.sql
+      initialize-schema: always
+    job:
+      enabled: false
